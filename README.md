@@ -47,3 +47,19 @@ from the creators of Next.js.
 Check out our
 [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying)
 for more details.
+
+## UI Libs
+
+* [Tremor](https://tremor.so) :  React components to build charts and dashboards with React, Tailwind CSS and Radix UI
+* [Cursor](https://cursify.vercel.app/): The only cursor animation you need
+
+## Used packages
+* tailwindcss
+* [React Query ](https://tanstack.com/query/latest): The Ultimate Async Data Management Tool
+
+## Recommend packages
+* [ShadCN UI](https://ui.shadcn.com/): The Modern UI Component Library for Next.js
+* [React DnD](https://react-dnd.github.io/react-dnd/): The Power of Drag & Drop 
+* [Planby](https://github.com/karolkozer/planby):  The Go-To Timeline & Scheduling Component 🗓️
+* react-resizable: A simple widget that can be resized via a handle.
+* react-advanced-cropper: This react cropper library gives you the possibility to create croppers that exactly suited for your website design. Don’t limit yourself. Rotate, zoom, transitions, autozoom and many other features included.

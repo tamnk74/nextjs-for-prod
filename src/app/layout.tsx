@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
+import BubbleCursor from '@/shared/ui/cursor';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,6 +37,7 @@ export default function RootLayout({
       >
         <QueryClientProvider client={queryClient}>
           <Toaster />
+          <BubbleCursor/>
           <div className="min-h-screen">
             <Navbar />
             <main className="pt-16">
