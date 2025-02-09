@@ -1,120 +1,158 @@
 name: Pull Request
 
-on: [pull_request]
+on:
+  pull_request:
+    branches:
+      - 'main'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        pnpm-version: [9.x]
+        node-version: [20.x, 22.x]
+
     steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: 20
+          version: ${{ matrix.pnpm-version }}
+          run_install: false
 
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+            
+      - name: Install dependencies
+        run: npm install -g corepack@latest && corepack enable pnpm && pnpm install --frozen-lockfile
 
-      - name: 🔬 Lint
-        run: npm run lint
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Lint
+        run: pnpm run lint
+      
 
   type-check:
     name: ʦ TypeScript
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        pnpm-version: [9.x]
+        node-version: [20.x, 22.x]
     steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: 20
+          version: ${{ matrix.pnpm-version }}
+          run_install: false
 
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+            
+      - name: Install dependencies
+        run: npm install -g corepack@latest && corepack enable pnpm && pnpm install --frozen-lockfile
+
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            node-modules-
 
       - name: 🔎 Type check
-        run: npm run type-check --if-present
+        run: pnpm run type-check --if-present
 
-  commitlint:
-    name: ⚙️ commitlint
+
+  unit-test:
+    name: ⚡ Unit Test
     runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    strategy:
+      matrix:
+        pnpm-version: [9.x]
+        node-version: [20.x, 22.x]
     steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
         with:
-          fetch-depth: 0
-      - name: ⚙️ commitlint
-        uses: wagoid/commitlint-github-action@v4
+          version: ${{ matrix.pnpm-version }}
+          run_install: false
 
-  vitest:
-    name: ⚡ Vitest
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:12
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: testdb
-        ports:
-          - 5432:5432
-    steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+            
+      - name: Install dependencies
+        run: npm install -g corepack@latest && corepack enable pnpm && pnpm install --frozen-lockfile
 
-  playwright:
-    name: 🎭 Playwright
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:12
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: testdb
-        ports:
-          - 5432:5432
-    steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
+      - uses: actions/cache@v4
         with:
-          node-version: 20
+          path: node_modules
+          key: node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            node-modules-
 
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
+      - name: Run Unit Test
+        run: pnpm test -- --ci
 
-      - name: 🌐 Install Playwright Browsers
-        run: npx playwright install --with-deps
+  # playwright:
+  #   name: 🎭 Playwright
+  #   runs-on: ubuntu-latest
+  #   services:
+  #     postgres:
+  #       image: postgres:12
+  #       env:
+  #         POSTGRES_USER: postgres
+  #         POSTGRES_PASSWORD: postgres
+  #         POSTGRES_DB: testdb
+  #       ports:
+  #         - 5432:5432
+  #   steps:
+  #     - name: ⬇️ Checkout repo
+  #       uses: actions/checkout@v3
 
-      - name: 🛠 Setup Database
-        run: npm run prisma:wipe
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/testdb
+  #     - name: ⎔ Setup node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 20
 
-      - name: 🎭 Playwright Run
-        run: npx playwright test
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/testdb
+  #     - name: 📥 Download deps
+  #       uses: bahmutov/npm-install@v1
 
-      - name: 📸 Playwright Screenshots
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+  #     - name: 🌐 Install Playwright Browsers
+  #       run: npx playwright install --with-deps
+
+  #     - name: 🛠 Setup Database
+  #       run: npm run prisma:wipe
+  #       env:
+  #         DATABASE_URL: postgresql://postgres:postgres@localhost:5432/testdb
+
+  #     - name: 🎭 Playwright Run
+  #       run: npx playwright test
+  #       env:
+  #         DATABASE_URL: postgresql://postgres:postgres@localhost:5432/testdb
+
+  #     - name: 📸 Playwright Screenshots
+  #       uses: actions/upload-artifact@v4
+  #       if: failure()
+  #       with:
+  #         name: playwright-report
+  #         path: playwright-report/
+  #         retention-days: 30

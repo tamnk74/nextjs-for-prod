@@ -1,10 +1,19 @@
-name: Run e2e tests
+name: Push Main
+
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main ]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        pnpm-version: [9.x]
+        node-version: [20.x]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,15 +32,17 @@ jobs:
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
-      - name: Run unit test
-        run: pnpm test -- --ci
-    # - name: Install Playwright Browsers
-    #   run: npx playwright install --with-deps
-    # - name: Run Playwright tests
-    #   run: npx playwright test
-    # - uses: actions/upload-artifact@v4
-    #   if: ${{ !cancelled() }}
-    #   with:
-    #     name: playwright-report
-    #     path: playwright-report/
-    #     retention-days: 30
+
+      - name: Setup
+        run: |
+          pnpm install --frozen-lockfile --prefer-frozen-lockfile --ignore-scripts
+          pnpm audit --audit-level=critical
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Run Unit Test
+        run: pnpm test 
+
+      - name: Build
+        run: pnpm run build
