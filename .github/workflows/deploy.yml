@@ -1,0 +1,25 @@
+
+name: Deploy Development
+run-name: Deploy to Development env
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: 'Environment to deploy to'
+        default: 'development'
+        options:
+          - development
+          - production
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/cd.yml
+    with:
+      environment: ${{ github.event.inputs.environment }}
+    secrets:
+      DOCKER_IMAGE_REPOSITORY: ${{ secrets.DOCKER_IMAGE_REPOSITORY }}
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
