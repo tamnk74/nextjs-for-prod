@@ -38,8 +38,8 @@ export function PostList() {
               <h2 className="text-xl font-semibold">{post.title}</h2>
               <p>{post.body}</p>
             </div>
-            <Button onClick={() => setSelectedPost(post)}>Edit</Button>
-            <Button onClick={() => handleDelete(post.id as number)} className=" ml-2 text-white py-2 px-4 rounded-md bg-red-500 hover:bg-red-600">
+            <Button variant='primary' onClick={() => setSelectedPost(post)}>Edit</Button>
+            <Button variant='destructive' onClick={() => handleDelete(post.id as number)} className='ml-2'>
                 Delete
             </Button>
           </li>

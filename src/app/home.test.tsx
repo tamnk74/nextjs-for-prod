@@ -2,7 +2,6 @@ import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react'
 import Home from './page'
 
-
 describe('Home', () => {
   test('renders the Next.js logo', () => {
       render(<Home />);
