@@ -49,7 +49,7 @@ Check out our
 for more details.
 
 ## UI Libs
-
+* [Uiverse](https://uiverse.io/loaders) : components reference
 * [Tremor](https://tremor.so) :  React components to build charts and dashboards with React, Tailwind CSS and Radix UI
 * [Cursor](https://cursify.vercel.app/): The only cursor animation you need
 
