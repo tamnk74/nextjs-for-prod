@@ -64,5 +64,9 @@ for more details.
 * react-resizable: A simple widget that can be resized via a handle.
 * react-advanced-cropper: This react cropper library gives you the possibility to create croppers that exactly suited for your website design. Don’t limit yourself. Rotate, zoom, transitions, autozoom and many other features included.
 
-## Images
+## Internationalization
+*[https://next-intl.dev/](https://next-intl.dev/)
+*[react-intl](https://formatjs.github.io/docs/react-intl/)
+
+## Docker Images
 * [docker hub](https://hub.docker.com/repository/docker/khactam94/nextjs-for-prod/tags)

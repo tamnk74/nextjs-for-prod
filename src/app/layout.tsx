@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import BubbleCursor from '@/shared/ui/cursor';
+import FlyonuiScript from '@/shared/lib/FlyonuiScript';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -42,6 +43,7 @@ export default function RootLayout({
             <Navbar />
             <main className="pt-16">
           {children}
+          <FlyonuiScript />
           </main>
           </div>
         </QueryClientProvider>
