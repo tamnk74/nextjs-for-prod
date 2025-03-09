@@ -5,6 +5,7 @@ export default {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    // './node_modules/flyonui/flyonui.js',
     './node_modules/flyonui/dist/js/*.js', // Require only if you want to use FlyonUI JS component
     // './node_modules/flyonui/dist/js/accordion.js', // Require only if you want to use FlyonUI accordion JS component
   ],

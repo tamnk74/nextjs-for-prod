@@ -43,11 +43,13 @@ export default function RootLayout({
             <Navbar />
             <main className="pt-16">
           {children}
-          <FlyonuiScript />
+          
           </main>
           </div>
+          
         </QueryClientProvider>
       </body>
+      <FlyonuiScript />
     </html>
   );
 }

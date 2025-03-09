@@ -5,7 +5,7 @@ import { usePosts } from './model';
 import { ErrorMessage } from '@/shared/ui/error-message';
 import { PostForm } from '../form/ui';
 import { Button } from '@/shared/ui/button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Post } from '@/entities/post/model';
 import { useDeletePost } from '../delete/model';
 
@@ -20,14 +20,6 @@ export function PostList() {
     }
   };
 
-  useEffect(() => {
-    const init = async () => {
-      await import("flyonui/flyonui");
-      window.HSStaticMethods.autoInit();
-    };
-    init();
-  }, []);
-
   if (isLoading)
     return (
       <div className="mx-auto max-w-4xl p-6">
@@ -39,7 +31,10 @@ export function PostList() {
   return (
     <div className="mx-auto max-w-4xl p-6">
       <h1 className="mb-4 text-3xl font-bold">Post Management</h1>
-
+      <button className="btn btn-primary">
+  <span className="loading loading-spinner"></span>
+  loading
+</button>
       {/* Post Form for Creating and Editing */}
       <PostForm existingPost={selectedPost} />
 
