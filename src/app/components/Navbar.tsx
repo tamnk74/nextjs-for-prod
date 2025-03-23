@@ -3,6 +3,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,10 +57,15 @@ const Navbar = () => {
 
             {/* Auth Dropdown */}
             <div className="relative">
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              <SignedOut>
               <button
                 onClick={() => setIsAuthDropdownOpen(!isAuthDropdownOpen)}
                 className="text-gray-600 hover:text-blue-600 focus:outline-none flex items-center space-x-1"
               >
+                
                 <span>Account</span>
                 <svg
                   className={`w-4 h-4 transition-transform ${
@@ -72,27 +84,18 @@ const Navbar = () => {
                 </svg>
               </button>
 
+
               {/* Dropdown Menu */}
               {isAuthDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                   <div className="py-1">
-                    {authLinks.map((link) => (
-                      <Link
-                        key={link.name}
-                        href={link.href}
-                        className={`${
-                          pathname === link.href
-                            ? 'bg-blue-50 text-blue-600'
-                            : 'text-gray-700 hover:bg-gray-100'
-                        } block px-4 py-2 text-sm`}
-                        onClick={() => setIsAuthDropdownOpen(false)}
-                      >
-                        {link.name}
-                      </Link>
-                    ))}
+                    <SignInButton /><br/>
+                    <SignUpButton />
                   </div>
                 </div>
               )}
+
+              </SignedOut>
             </div>
           </div>
 

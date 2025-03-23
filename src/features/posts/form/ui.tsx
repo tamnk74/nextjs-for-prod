@@ -37,7 +37,6 @@ export function PostForm({ existingPost }: { existingPost?: Post }) {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 border p-4 rounded-md shadow">
       <Input {...register('title', { required: true })} placeholder="Post Title" />
       <Input {...register('body', { required: true })} placeholder="Post Body" />
-
       <Button type="submit">{isEditing ? 'Update Post' : 'Create Post'}</Button>
     </form>
   );

@@ -56,6 +56,7 @@ for more details.
 ## Used packages
 * tailwindcss
 * [React Query ](https://tanstack.com/query/latest): The Ultimate Async Data Management Tool
+* [prosemirror](https://prosemirror.net/docs/guide/#intro)
 
 ## Recommend packages
 * [ShadCN UI](https://ui.shadcn.com/): The Modern UI Component Library for Next.js
@@ -63,6 +64,16 @@ for more details.
 * [Planby](https://github.com/karolkozer/planby):  The Go-To Timeline & Scheduling Component 🗓️
 * react-resizable: A simple widget that can be resized via a handle.
 * react-advanced-cropper: This react cropper library gives you the possibility to create croppers that exactly suited for your website design. Don’t limit yourself. Rotate, zoom, transitions, autozoom and many other features included.
+* [Sonner](https://sonner.emilkowal.ski/getting-started)
+* npm i react-toastify
+* npm i react-hot-toast
+* npm install diff-match-patch
+* 
+* 
+* 
+* 
+* 
+* 
 
 ## Internationalization
 *[https://next-intl.dev/](https://next-intl.dev/)

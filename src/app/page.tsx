@@ -1,9 +1,13 @@
+"use client";
+
 import Image from 'next/image';
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 
 export default function Home() {
   return (
     <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
-      <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
+      <main className="w-full row-start-2 flex flex-col items-center gap-2 sm:items-start">
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -47,6 +51,18 @@ export default function Home() {
           >
             Read our docs
           </a>
+        </div>
+        <div className="w-full flex flex-col items-center gap-4 sm:flex-row">
+        <FullCalendar
+          viewClassNames={['bg-white', 'dark:bg-black']}
+          plugins={[ dayGridPlugin ]}
+          initialView="dayGridMonth"
+          weekends={true}
+          events={[
+            { title: 'event 1', date: '2025-03-20' },
+            { title: 'event 2', date: '2025-03-22' }
+          ]}
+        />
         </div>
       </main>
       <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6">

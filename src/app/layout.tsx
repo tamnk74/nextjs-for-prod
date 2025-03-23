@@ -5,9 +5,12 @@ import './globals.css';
 import Navbar from './components/Navbar';
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'sonner';
 import BubbleCursor from '@/shared/ui/cursor';
 import FlyonuiScript from '@/shared/lib/FlyonuiScript';
+import {
+  ClerkProvider,
+} from '@clerk/nextjs'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,8 +39,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ClerkProvider>
         <QueryClientProvider client={queryClient}>
-          <Toaster />
           <BubbleCursor/>
           <div className="min-h-screen">
             <Navbar />
@@ -48,6 +51,8 @@ export default function RootLayout({
           </div>
           
         </QueryClientProvider>
+        </ClerkProvider>
+        <Toaster />
       </body>
       <FlyonuiScript />
     </html>
