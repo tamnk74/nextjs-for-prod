@@ -31,7 +31,7 @@ export function PostForm({ existingPost }: { existingPost?: Post }) {
       setIsEditing(true);
       reset(existingPost);
     }
-  }, [existingPost]);
+  }, [existingPost, reset]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 border p-4 rounded-md shadow">
