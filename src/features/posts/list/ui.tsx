@@ -2,9 +2,9 @@
 
 import { Spinner } from '@/shared/ui/spinner';
 import { usePosts } from './model';
-import { ErrorMessage } from '@/shared/ui/error-message';
+import { ErrorMessage } from '@/shared/ui/error/error-message';
 import { PostForm } from '../form/ui';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/button/button';
 import { useState } from 'react';
 import { Post } from '@/entities/post/model';
 import { useDeletePost } from '../delete/model';

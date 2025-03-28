@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoginFormInputs } from "./model";
 import Image from "next/image";
-import { Input } from "@/shared/ui/input";
-import { Button } from "@/shared/ui/button";
+import { Input } from "@/shared/ui/input/input";
+import { Button } from "@/shared/ui/button/button";
 
 export function LoginForm() {
     const {
@@ -60,7 +60,7 @@ export function LoginForm() {
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                 </svg>
               </span>
-              <input
+              <Input
                 type="email"
                 id="email"
                 className={`mb-2 block w-full rounded-lg rounded-l-lg border border-gray-300 bg-gray-50 p-2.5 px-4 py-3 pl-12 text-gray-600 ring-3 ring-transparent focus:border-transparent focus:ring-1 focus:ring-gray-400 focus:outline-hidden sm:text-sm ${

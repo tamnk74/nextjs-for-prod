@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useCreatePost, useUpdatePost } from './model';
 import { Post } from '@/entities/post/model';
-import { Input } from '@/shared/ui/input';
-import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/input/input';
+import { Button } from '@/shared/ui/button/button';
 
 export function PostForm({ existingPost }: { existingPost?: Post }) {
   const { register, handleSubmit, reset } = useForm<Post>({
