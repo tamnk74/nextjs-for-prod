@@ -42,7 +42,7 @@ jobs:
         run: pnpm run lint
 
       - name: Type checking
-        run: npm run check-types
+        run: npm run type-check
 
       - name: Run Unit Test
         run: pnpm test -- --ci --coverage
