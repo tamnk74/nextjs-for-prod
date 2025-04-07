@@ -1,6 +1,5 @@
 'use client';
 
-import { Spinner } from '@/shared/ui/spinner';
 import { usePosts } from './model';
 import { ErrorMessage } from '@/shared/ui/error/error-message';
 import { PostForm } from '../form/ui';
@@ -20,21 +19,13 @@ export function PostList() {
     }
   };
 
-  if (isLoading)
-    return (
-      <div className="mx-auto max-w-4xl p-6">
-        <Spinner />
-      </div>
-    );
+  if (isLoading) return <div className="mx-auto max-w-4xl p-6"><span className="loading loading-dots loading-lg"></span></div>;
+
   if (error) return <ErrorMessage message="Something went wrong!" />;
 
   return (
     <div className="mx-auto max-w-4xl p-6">
       <h1 className="mb-4 text-3xl font-bold">Post Management</h1>
-      <button className="btn btn-primary">
-  <span className="loading loading-spinner"></span>
-  loading
-</button>
       {/* Post Form for Creating and Editing */}
       <PostForm existingPost={selectedPost} />
 

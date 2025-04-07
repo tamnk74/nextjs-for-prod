@@ -16,6 +16,13 @@ const nextConfig: NextConfig = {
         pathname: '/u/**',
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'tailwind-generator.b-cdn.net',
+        port: '',
+        pathname: '**',
+        search: '',
+      },
     ],
   },
   /* config options here */

@@ -1,25 +1,34 @@
+// FlyonuiScript.tsx
 'use client';
 
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { IStaticMethods } from 'flyonui/flyonui';
 
-declare global {
-  interface Window {
-    HSStaticMethods: IStaticMethods;
-  }
+
+async function loadFlyonUI() {
+  return import('flyonui/dist/accordion.js');
 }
 
 export default function FlyonuiScript() {
   const path = usePathname();
 
   useEffect(() => {
-    const loadFlyonui = async () => {
-      await import('flyonui/flyonui');
-      window.HSStaticMethods.autoInit();
-      console.log('FlyonUI loaded');
+    const initFlyonUI = async () => {
+      await loadFlyonUI();
     };
-    loadFlyonui();
+
+    initFlyonUI();
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (
+        window.HSAccordion &&
+        typeof window.HSAccordion.autoInit === 'function'
+      ) {
+        window.HSAccordion.autoInit();
+      }
+    }, 100);
   }, [path]);
 
   return null;

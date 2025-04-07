@@ -19,7 +19,8 @@ const Navbar = () => {
   const links = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'UI Libs', href: '/ui-libs' },
+    { name: 'Calendar', href: '/calendar' },
+    { name: 'Libs', href: '/libs' },
     { name: 'Posts', href: '/posts' },
   ];
 
@@ -35,7 +36,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="text-2xl font-bold text-blue-600">
-              Logo
+              Nextjs
             </Link>
           </div>
 

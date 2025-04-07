@@ -1,68 +1,32 @@
 "use client";
 
 import Image from 'next/image';
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
+import { ReactFlow } from '@xyflow/react';
+ 
+import '@xyflow/react/dist/style.css';
+
+const initialNodes = [
+  { id: 'algorithm', position: { x: 300, y: 100 }, data: { label: 'Algorithm' } },
+  { id: 'frontend', position: { x: 200, y: 200 }, data: { label: 'Frontend' } },
+  { id: 'backend', position: { x: 400, y: 200 }, data: { label: 'Backend' } },
+  { id: 'devops', position: { x: 300, y: 300 }, data: { label: 'Devops' } },
+  { id: 'system-design', position: { x: 300, y: 400 }, data: { label: 'System design' } },
+];
+
+const initialEdges = [
+  { id: 'e-algorithm-frontend', source: 'algorithm', target: 'frontend' },
+  { id: 'e-algorithm-backend', source: 'algorithm', target: 'backend' },
+  { id: 'e-backend-devops', source: 'backend', target: 'devops' },
+  { id: 'e-frontend-devops', source: 'frontend', target: 'devops' },
+  { id: 'e-devops-system-design', source: 'devops', target: 'system-design' },
+];
 
 export default function Home() {
   return (
-    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center px-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:px-20">
       <main className="w-full row-start-2 flex flex-col items-center gap-2 sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm sm:text-left">
-          <li className="mb-2">
-            Get started by editing{' '}
-            <code className="rounded bg-black/[.05] px-1 py-0.5 font-semibold dark:bg-white/[.06]">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex flex-col items-center gap-4 sm:flex-row">
-          <a
-            className="flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent bg-foreground px-4 text-sm text-background transition-colors hover:bg-[#383838] sm:h-12 sm:px-5 sm:text-base dark:hover:bg-[#ccc]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="flex h-10 items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:min-w-44 sm:px-5 sm:text-base dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-        <div className="w-full flex flex-col items-center gap-4 sm:flex-row">
-        <FullCalendar
-          viewClassNames={['bg-white', 'dark:bg-black']}
-          plugins={[ dayGridPlugin ]}
-          initialView="dayGridMonth"
-          weekends={true}
-          events={[
-            { title: 'event 1', date: '2025-03-20' },
-            { title: 'event 2', date: '2025-03-22' }
-          ]}
-        />
+        <div style={{ width: '100vw', height: '100vh' }}>
+          <ReactFlow nodes={initialNodes} edges={initialEdges} zoomOnPinch={false} zoomOnScroll={false}/>
         </div>
       </main>
       <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6">
