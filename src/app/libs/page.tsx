@@ -54,10 +54,75 @@ export default function About() {
           description: 'A collection of UI components for React',
         },
         {
+          name: 'Headless UI',
+          url: 'https://headlessui.dev/',
+          description:
+            'Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS',
+        },
+        {
+          name: 'Radix UI',
+          url: 'https://www.radix-ui.com/',
+          description:
+            'Unstyled, accessible components for building high-quality design systems and web apps in React & Vue',
+        },
+        {
+          name: 'React Flow',
+          url: 'https://reactflow.dev/',
+          description:
+            'A library for building interactive node-based UIs, like flow charts, BPMN editors, and more',
+        },
+        {
+          name: 'React Icons',
+          url: 'https://react-icons.github.io/react-icons/',
+          description:
+            'Include popular icons in your React projects easily with react-icons',
+        },
+        {
+          name: 'React Spring',
+          url: 'https://react-spring.dev/',
+          description:
+            'A powerful library for creating animations and transitions in React',
+        },
+        {
+          name: 'React Router',
+          url: 'https://reactrouter.com/',
+          description:
+            'Declarative routing for React.js, React Native, and React VR',
+        },
+        {
+          name: 'React Dnd',
+          url: 'https://react-dnd.github.io/react-dnd/about',
+          description:
+            'Drag and Drop for React, powered by the HTML5 backend and a set of utilities for building complex drag-and-drop interfaces',
+        },
+        {
+          name: 'react-data-grid',
+          url: 'https://adazzle.github.io/react-data-grid/#/CommonFeatures',
+          description:
+            'Build table as data grid for React with a lot of features like sorting, filtering, and editing',
+        },
+        {
+          name: 'React Select',
+          url: 'https://react-select.com/home',
+          description:
+            'A flexible and beautiful Select Input control for ReactJS with multiselect, autocomplete, async and creatable support.',
+        },
+        {
+          name: 'React Datepicker',
+          url: 'https://reactdatepicker.com/',
+          description: 'A simple and reusable datepicker component for React',
+        },
+        {
           name: 'Sonner',
           url: 'https://sonner.io/',
           description: 'A simple and lightweight toast library for React',
-        },{
+        },
+        {
+          name: 'React Hot Toast',
+          url: 'https://react-hot-toast.com/',
+          description: 'A lightweight and customizable toast notification library for React',
+        },
+        {
           name: 'Geist UI',
           url: 'https://geist-ui.dev/en-us/components/text',
           description: 'Modern and minimalist React UI library',
