@@ -281,6 +281,17 @@ export default function About() {
         }
       ],
     },
+    {
+      categoryId: 'mcp',
+      categoryName: 'MCP',
+      libs: [
+        {
+          name: 'pulsemcp',
+          url: 'https://www.pulsemcp.com/',
+          description: 'MCP Server Directory',
+        }
+      ],
+    },
   ];
 
   return (
