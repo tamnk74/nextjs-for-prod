@@ -289,6 +289,11 @@ export default function About() {
           name: 'pulsemcp',
           url: 'https://www.pulsemcp.com/',
           description: 'MCP Server Directory',
+        },
+        {
+          name: 'awesome-mcp-servers',
+          url: 'https://github.com/punkpeye/awesome-mcp-servers',
+          description: 'A collection of MCP servers.'
         }
       ],
     },
