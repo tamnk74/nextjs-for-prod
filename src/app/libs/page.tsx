@@ -41,7 +41,7 @@ export default function About() {
           name: 'Tailwind CSS',
           url: 'https://tailwindcss.com/',
           description: 'A utility-first CSS framework for rapid UI development',
-        }
+        },
       ],
     },
     {
@@ -70,12 +70,6 @@ export default function About() {
           url: 'https://reactflow.dev/',
           description:
             'A library for building interactive node-based UIs, like flow charts, BPMN editors, and more',
-        },
-        {
-          name: 'React Icons',
-          url: 'https://react-icons.github.io/react-icons/',
-          description:
-            'Include popular icons in your React projects easily with react-icons',
         },
         {
           name: 'React Spring',
@@ -132,11 +126,6 @@ export default function About() {
           url: 'https://react-icons.github.io/react-icons/',
           description:
             'Include popular icons in your React projects easily with react-icons',
-        },
-        {
-          name: 'React Datepicker',
-          url: 'https://reactdatepicker.com/',
-          description: 'A simple and reusable datepicker component for React',
         },
         {
           name: 'Swapy',
