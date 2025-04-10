@@ -1,5 +1,5 @@
 import { PostList } from '@/features/posts/list/ui';
 
-export default function PostsPage() {
+export default async function PostsPage() {
   return (<PostList />);
 }

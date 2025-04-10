@@ -108,7 +108,7 @@ src/
 * npm i react-toastify
 * npm i react-hot-toast
 * npm install diff-match-patch
-* 
+* nice-modal-react
 * 
 * 
 * 

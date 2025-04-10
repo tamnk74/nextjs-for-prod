@@ -1,23 +1,26 @@
 import { Post } from '@/entities/post/model';
-import axios from 'axios';
-
-const API_URL = 'https://jsonplaceholder.typicode.com/posts';
+import { supabase } from '../utils/supabase';
 
 export const fetchPosts = async () => {
-  const response = await axios.get(API_URL);
-  return response.data;
+  const { data, error } = await supabase.from('posts').select('*');
+  if (error) throw error;
+  return data;
 };
 
-export const createPost = async (post: Post): Promise<Post> => {
-  const response = await axios.post(API_URL, post);
-  return response.data;
+export const createPost = async (post: Post): Promise<null> => {
+  const { data, error } = await supabase.from('posts').insert(post);
+  if (error) throw error;
+  return data;
 };
 
-export const updatePost = async (post: Post): Promise<Post> => {
-  const response = await axios.put(`${API_URL}/${post.id}`, post);
-  return response.data;
+export const updatePost = async (post: Post) => {
+  const { error } = await supabase.from('posts').update(post).eq('id', post.id);
+
+  if (error) throw error;
 };
 
 export const deletePost = async (postId: number): Promise<void> => {
-  await axios.delete(`${API_URL}/${postId}`);
+  const { error } = await supabase.from('posts').delete().eq('id', postId);
+
+  if (error) throw error;
 };

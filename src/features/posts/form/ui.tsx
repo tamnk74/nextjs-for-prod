@@ -16,11 +16,19 @@ export function PostForm({ existingPost }: { existingPost?: Post }) {
   const createMutation = useCreatePost();
   const updateMutation = useUpdatePost();
 
-  const onSubmit = (data: Post) => {
+  const onSubmit = async (data: Post) => {
     if (isEditing) {
-      updateMutation.mutate(data);
+      updateMutation.mutate({
+        ...data,
+        slug: data.title.toLowerCase().replace(/\s+/g, '-'),
+        user_id: 1,
+      });
     } else {
-      createMutation.mutate(data);
+      createMutation.mutate({
+        ...data,
+        slug: data.title.toLowerCase().replace(/\s+/g, '-'),
+        user_id: 1,
+      });
     }
     reset({});
     setIsEditing(false);
