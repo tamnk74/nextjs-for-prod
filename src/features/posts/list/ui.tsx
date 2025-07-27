@@ -7,6 +7,18 @@ import { Button } from '@/shared/ui/button/button';
 import { useState } from 'react';
 import { Post } from '@/entities/post/model';
 import { useDeletePost } from '../delete/model';
+import EditorJsHtml from 'editorjs-html';
+
+const edjsParser = EditorJsHtml();
+
+export function renderPostContent(content: string) {
+  const htmlBlocks = edjsParser.parse(JSON.parse(content));
+  return (
+    <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: htmlBlocks }}>
+    </div>
+  );
+}
+
 
 export function PostList() {
   const { data: posts, isLoading, error } = usePosts();
@@ -38,7 +50,7 @@ export function PostList() {
           >
             <div>
               <h2 className="text-xl font-semibold">{post.title}</h2>
-              <p>{post.body}</p>
+              {renderPostContent(post.body)}
             </div>
             <Button variant="primary" onClick={() => setSelectedPost(post)}>
               Edit

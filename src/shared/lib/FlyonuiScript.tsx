@@ -6,8 +6,9 @@ import { useEffect } from 'react';
 
 
 async function loadFlyonUI() {
-  return import('flyonui/dist/accordion.js');
+  return import('flyonui/flyonui');
 }
+
 
 export default function FlyonuiScript() {
   const path = usePathname();

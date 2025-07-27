@@ -57,9 +57,17 @@ const Navbar = () => {
             ))}
 
             {/* Auth Dropdown */}
-            <div className="relative">
+            <div className="flex">
               <SignedIn>
-                <UserButton />
+                <div className="indicator m-2">
+                  <span className="indicator-item status status-primary status-sm"></span>
+                  <div className="bg-primary/10 border-primary grid place-items-center rounded-md border p-1">
+                    <span className="icon-[tabler--bell] text-primary size-3"></span>
+                  </div>
+                </div>
+                <div className="m-2">
+                  <UserButton/>
+                </div>
               </SignedIn>
               <SignedOut>
               <button

@@ -6,9 +6,12 @@ import { useCreatePost, useUpdatePost } from './model';
 import { Post } from '@/entities/post/model';
 import { Input } from '@/shared/ui/input/input';
 import { Button } from '@/shared/ui/button/button';
+import dynamic from 'next/dynamic';
+
+const EditorInput = dynamic(() => import('@/shared/ui/editor-input'), { ssr: false });
 
 export function PostForm({ existingPost }: { existingPost?: Post }) {
-  const { register, handleSubmit, reset } = useForm<Post>({
+  const { register, handleSubmit, reset, setValue } = useForm<Post>({
     defaultValues: existingPost || { title: '', body: '' },
   });
 
@@ -42,10 +45,19 @@ export function PostForm({ existingPost }: { existingPost?: Post }) {
   }, [existingPost, reset]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 border p-4 rounded-md shadow">
-      <Input {...register('title', { required: true })} placeholder="Post Title" />
-      <Input {...register('body', { required: true })} placeholder="Post Body" />
-      <Button type="submit">{isEditing ? 'Update Post' : 'Create Post'}</Button>
+    <div className="mb-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 border p-4 rounded-md shadow">
+        <label className="label-text" htmlFor="labelAndHelperText">Title</label>
+        <Input {...register('title', { required: true })} placeholder="Title" className='w-96'/>
+        <label className="label-text" htmlFor="labelAndHelperText">Content</label>
+        <EditorInput 
+          onChange={(data) => setValue('body', JSON.stringify(data))}
+          defaultValue={existingPost?.body ? JSON.parse(existingPost.body) : { blocks: [] }}
+        />
+        <Button type="submit">{isEditing ? 'Update Post' : 'Create Post'}</Button>
+        <Button type="reset" className='btn btn-soft'>Reset</Button>
     </form>
+      </div>
+  
   );
 }

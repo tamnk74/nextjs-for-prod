@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "tailwindcss-intersect";
+/* @plugin "tailwindcss-motion";  -- wait for tailwind 4*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +9,7 @@
 @plugin "@iconify/tailwind4";
 @import "flyonui/variants.css";
 @source "./node_modules/flyonui/flyonui.js";
-
+@import "flyonui/src/vendor/editor.css";
 /* @source "./node_modules/flyonui/dist/accordion.js" // Specific JS component */
 /* Import Third-party override css */
 /* @import "flyonui/src/vendor/flatpickr.css"; */
