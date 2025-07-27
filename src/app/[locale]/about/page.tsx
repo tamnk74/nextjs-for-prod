@@ -1,14 +1,17 @@
+import { useTranslations } from 'next-intl';
 import Container from "../components/Container";
 
 export default function About() {
+  const t = useTranslations('About');
+  
   return (
     <Container>
       <div className="space-y-8">
         {/* Hero Section */}
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">About Us</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('title')}</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            We are dedicated to creating innovative solutions that make a difference in people&apos;s lives.
+            {t('description')}
           </p>
         </div>
 

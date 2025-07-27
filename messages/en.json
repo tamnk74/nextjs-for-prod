@@ -1,0 +1,71 @@
+{
+    "Navigation": {
+        "home": "Home",
+        "about": "About",
+        "posts": "Posts",
+        "profile": "Profile",
+        "calendar": "Calendar",
+        "libs": "Libraries"
+    },
+    "Common": {
+        "welcome": "Welcome",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "save": "Save",
+        "edit": "Edit",
+        "delete": "Delete",
+        "search": "Search",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous"
+    },
+    "Auth": {
+        "login": "Login",
+        "logout": "Logout",
+        "signup": "Sign Up",
+        "forgotPassword": "Forgot Password?",
+        "email": "Email",
+        "password": "Password",
+        "rememberMe": "Remember Me"
+    },
+    "Home": {
+        "title": "Welcome to Next.js",
+        "description": "Get started by editing src/app/page.tsx",
+        "learnMore": "Learn more about Next.js",
+        "home": "Home",
+        "about": "About"
+    },
+    "About": {
+        "title": "About Us",
+        "description": "Learn more about our company and mission."
+    },
+    "Posts": {
+        "title": "Posts",
+        "createPost": "Create Post",
+        "editPost": "Edit Post",
+        "deletePost": "Delete Post",
+        "noPostsFound": "No posts found"
+    },
+    "Profile": {
+        "title": "Profile",
+        "editProfile": "Edit Profile",
+        "personalInfo": "Personal Information",
+        "settings": "Settings"
+    },
+    "Calendar": {
+        "title": "Calendar",
+        "today": "Today",
+        "month": "Month",
+        "week": "Week",
+        "day": "Day",
+        "event": "Event",
+        "addEvent": "Add Event"
+    },
+    "LanguageSwitcher": {
+        "english": "English",
+        "vietnamese": "Tiếng Việt"
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "Navigation": {
+        "home": "Trang chủ",
+        "about": "Giới thiệu",
+        "posts": "Bài viết",
+        "profile": "Hồ sơ",
+        "calendar": "Lịch",
+        "libs": "Thư viện"
+    },
+    "Common": {
+        "welcome": "Chào mừng",
+        "loading": "Đang tải...",
+        "error": "Lỗi",
+        "success": "Thành công",
+        "cancel": "Hủy",
+        "confirm": "Xác nhận",
+        "save": "Lưu",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa",
+        "search": "Tìm kiếm",
+        "back": "Quay lại",
+        "next": "Tiếp theo",
+        "previous": "Trước đó"
+    },
+    "Auth": {
+        "login": "Đăng nhập",
+        "logout": "Đăng xuất",
+        "signup": "Đăng ký",
+        "forgotPassword": "Quên mật khẩu?",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "rememberMe": "Ghi nhớ đăng nhập"
+    },
+    "Home": {
+        "title": "Chào mừng đến với Next.js",
+        "description": "Bắt đầu bằng cách chỉnh sửa src/app/page.tsx",
+        "learnMore": "Tìm hiểu thêm về Next.js",
+        "home": "Trang chủ",
+        "about": "Giới thiệu"
+    },
+    "About": {
+        "title": "Về chúng tôi",
+        "description": "Tìm hiểu thêm về công ty và sứ mệnh của chúng tôi."
+    },
+    "Posts": {
+        "title": "Bài viết",
+        "createPost": "Tạo bài viết",
+        "editPost": "Chỉnh sửa bài viết",
+        "deletePost": "Xóa bài viết",
+        "noPostsFound": "Không tìm thấy bài viết nào"
+    },
+    "Profile": {
+        "title": "Hồ sơ",
+        "editProfile": "Chỉnh sửa hồ sơ",
+        "personalInfo": "Thông tin cá nhân",
+        "settings": "Cài đặt"
+    },
+    "Calendar": {
+        "title": "Lịch",
+        "today": "Hôm nay",
+        "month": "Tháng",
+        "week": "Tuần",
+        "day": "Ngày",
+        "event": "Sự kiện",
+        "addEvent": "Thêm sự kiện"
+    },
+    "LanguageSwitcher": {
+        "english": "English",
+        "vietnamese": "Tiếng Việt"
+    }
+}

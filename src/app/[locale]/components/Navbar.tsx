@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { Link, usePathname } from '@/i18n/routing';
 import {
   SignInButton,
   SignUpButton,
@@ -10,24 +10,22 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthDropdownOpen, setIsAuthDropdownOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations('Navigation');
 
   const links = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Calendar', href: '/calendar' },
-    { name: 'Libs', href: '/libs' },
-    { name: 'Posts', href: '/posts' },
-  ];
-
-  const authLinks = [
-    { name: 'Login', href: '/login' },
-    { name: 'Sign Up', href: '/signup' },
-  ];
+    { name: t('home'), href: '/' },
+    { name: t('about'), href: '/about' },
+    { name: t('libs'), href: '/libs' },
+    { name: t('calendar'), href: '/calendar' },
+    { name: t('posts'), href: '/posts' },
+    { name: t('profile'), href: '/profile' },
+  ] as const;
 
   return (
     <nav className="bg-white shadow-sm fixed w-full z-10">
@@ -55,6 +53,9 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+
+            {/* Language Switcher */}
+            <LanguageSwitcher />
 
             {/* Auth Dropdown */}
             <div className="flex">
@@ -96,10 +97,18 @@ const Navbar = () => {
 
               {/* Dropdown Menu */}
               {isAuthDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white">
                   <div className="py-1">
-                    <SignInButton /><br/>
-                    <SignUpButton />
+                    <SignInButton>
+                      <span className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center space-x-2">
+                        <span>Sign In</span>
+                      </span>
+                      </SignInButton>
+                    <SignUpButton>
+                      <span className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center space-x-2">
+                        <span>Sign Up</span>
+                      </span>
+                    </SignUpButton>
                   </div>
                 </div>
               )}
@@ -160,22 +169,9 @@ const Navbar = () => {
               </Link>
             ))}
 
-            {/* Mobile Auth Links */}
-            <div className="mt-2 border-t pt-2">
-              {authLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`${
-                    pathname === link.href
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-600 hover:bg-gray-50'
-                  } block px-4 py-2 text-sm rounded-lg`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+            {/* Mobile Language Switcher */}
+            <div className="mt-4 pt-2 border-t">
+              <LanguageSwitcher />
             </div>
           </div>
         </div>
