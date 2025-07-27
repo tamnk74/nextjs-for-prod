@@ -268,6 +268,11 @@ export default function About() {
           url: 'https://daypicker.dev/',
           description: 'A flexible date picker component for React',
         },
+        {
+          name: 'Freesets',
+          url: 'https://freesets.dev/',
+          description: 'Free design resources including icons, illustrations, components, and tools for developers',
+        },
       ],
     },
     {
@@ -278,6 +283,11 @@ export default function About() {
           name: 'Clerk',
           url: 'https://clerk.dev/',
           description: 'The complete authentication stack for your Next.js app',
+        },
+        {
+          name: 'Auth0',
+          url: 'https://auth0.com/',
+          description: 'Secure access for everyone. But not just anyone.',
         }
       ],
     },
