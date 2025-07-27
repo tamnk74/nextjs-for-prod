@@ -23,6 +23,6 @@ export const signInAction = async (formData: FormData) => {
   return redirect('/protected');
 };
 
-function encodedRedirect(arg0: string, arg1: string, message: string) {
+function encodedRedirect(_type: string, _path: string, _message: string) {
   throw new Error('Function not implemented.');
 }

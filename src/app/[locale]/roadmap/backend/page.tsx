@@ -268,8 +268,6 @@ const backendEdges = [
 ];
 
 export default function BackendRoadmap() {
-  const t = useTranslations('Home');
-
   const onNodeClick = (event: React.MouseEvent, node: { id: string; data: { label: string; url?: string } }) => {
     if (node.data.url) {
       window.open(node.data.url, '_blank', 'noopener,noreferrer');
