@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ReactFlow } from '@xyflow/react';
+import { useRouter } from 'next/navigation';
 
 import '@xyflow/react/dist/style.css';
 
@@ -105,8 +106,26 @@ const initialEdges = [
 
 export default function HomePage() {
   const t = useTranslations('Home');
+  const router = useRouter();
 
   const onNodeClick = (event: React.MouseEvent, node: { id: string; data: { label: string; url?: string } }) => {
+    // Special handling for Frontend and Backend nodes - navigate to detailed roadmaps
+    if (node.id === 'frontend') {
+      router.push('/en/roadmap/frontend');
+      return;
+    }
+    
+    if (node.id === 'backend') {
+      router.push('/en/roadmap/backend');
+      return;
+    }
+    
+    if (node.id === 'devops') {
+      router.push('/en/roadmap/devops');
+      return;
+    }
+    
+    // For all other nodes, open documentation URL
     if (node.data.url) {
       window.open(node.data.url, '_blank', 'noopener,noreferrer');
     }
@@ -132,6 +151,14 @@ export default function HomePage() {
             defaultViewport={{ x: 0, y: 0, zoom: 0.7 }}
             zoomOnDoubleClick={false}
             panOnDrag={true}
+            style={{ 
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              backgroundImage: `
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 219, 226, 0.3) 0%, transparent 50%)
+              `
+            }}
           />
         </div>
       </div>

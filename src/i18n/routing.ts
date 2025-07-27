@@ -19,6 +19,14 @@ export const routing = defineRouting({
       en: '/libs',
       vi: '/thu-vien',
     },
+    '/roadmap/frontend': {
+      en: '/roadmap/frontend',
+      vi: '/lo-trinh/frontend',
+    },
+    '/roadmap/backend': {
+      en: '/roadmap/backend',
+      vi: '/lo-trinh/backend',
+    },
     '/posts': {
       en: '/posts',
       vi: '/bai-viet',
