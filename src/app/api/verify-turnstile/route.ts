@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     if (!token) {
       return NextResponse.json(
         { success: false, error: 'No token provided' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
           // Optional: Include the user's IP address
           // remoteip: request.ip || '',
         }),
-      }
+      },
     );
 
     const verificationResult = await verificationResponse.json();
@@ -45,14 +45,14 @@ export async function POST(request: NextRequest) {
           error: 'Verification failed',
           errorCodes: verificationResult['error-codes'],
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
   } catch (error) {
     console.error('Turnstile verification error:', error);
     return NextResponse.json(
       { success: false, error: 'Internal server error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -54,7 +54,6 @@ export default async function LocaleLayout({
           </NextIntlClientProvider>
         </ClerkProvider>
         <Toaster />
-        <div className="cf-turnstile" data-sitekey="0x4AAAAAABjTaSufpzCDM6pN" data-theme="light"></div>
         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
       </body>
       <FlyonuiScript />

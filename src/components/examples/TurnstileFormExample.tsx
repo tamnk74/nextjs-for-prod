@@ -78,7 +78,7 @@ export default function ExampleForm() {
       {/* Cloudflare Turnstile Widget */}
       <div className="mb-4">
         <CloudflareTurnstile
-          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || 'your-site-key-here'}
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAABsikdnaw6h7p4c_'}
           onVerify={handleTurnstileVerify}
           onError={handleTurnstileError}
           theme="auto"
