@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import CloudflareTurnstile from '../../../components/CloudflareTurnstile';
 import '../../../utils/turnstile-debug';
 
@@ -8,10 +8,13 @@ export default function TurnstileTestPage() {
   const [token, setToken] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [status, setStatus] = useState<string>('');
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submitCount, setSubmitCount] = useState<number>(0);
+  const [turnstileKey, setTurnstileKey] = useState<number>(0); // Force re-render of Turnstile
 
   const handleVerify = (token: string) => {
     setToken(token);
-    setStatus('Verified successfully!');
+    setStatus('✅ Verified successfully! Ready to submit.');
     setError('');
     console.log('Turnstile verified with token:', token);
   };
@@ -24,15 +27,23 @@ export default function TurnstileTestPage() {
   };
 
   const handleExpire = () => {
-    setStatus('Token expired, please verify again');
+    setStatus('⏰ Token expired, please verify again');
     setToken('');
     console.log('Turnstile token expired');
   };
 
   const handleTimeout = () => {
-    setStatus('Verification timed out, please try again');
+    setStatus('⏱️ Verification timed out, please try again');
     setToken('');
     console.log('Turnstile timed out');
+  };
+
+  // Reset Turnstile widget to generate new token
+  const resetTurnstile = () => {
+    setTurnstileKey(prev => prev + 1); // Force component re-render
+    setToken('');
+    setStatus('🔄 Please complete verification again');
+    setError('');
   };
 
   const testSubmit = async () => {
@@ -41,7 +52,8 @@ export default function TurnstileTestPage() {
       return;
     }
 
-    setStatus('Testing verification...');
+    setIsSubmitting(true);
+    setStatus('🔄 Testing verification...');
     
     try {
       const response = await fetch('/api/verify-turnstile', {
@@ -56,11 +68,20 @@ export default function TurnstileTestPage() {
       
       if (result.success) {
         setStatus('✅ Server verification successful!');
+        setSubmitCount(prev => prev + 1);
       } else {
         setStatus(`❌ Server verification failed: ${result.error}`);
       }
     } catch (err) {
       setStatus(`❌ Network error: ${err}`);
+    } finally {
+      setIsSubmitting(false);
+      
+      // Reset Turnstile widget after submission (success or failure)
+      // Token is now invalid and user needs to verify again
+      setTimeout(() => {
+        resetTurnstile();
+      }, 2000); // Wait 2 seconds to show result, then reset
     }
   };
 
@@ -84,6 +105,7 @@ export default function TurnstileTestPage() {
           {/* Turnstile Widget */}
           <div className="mb-4">
             <CloudflareTurnstile
+              key={turnstileKey} // Force re-render when key changes
               siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAABsikdnaw6h7p4c_'}
               onVerify={handleVerify}
               onError={handleError}
@@ -99,6 +121,8 @@ export default function TurnstileTestPage() {
             <div className={`p-3 rounded mb-4 ${
               status.includes('✅') ? 'bg-green-100 text-green-800' :
               status.includes('❌') ? 'bg-red-100 text-red-800' :
+              status.includes('🔄') ? 'bg-blue-100 text-blue-800' :
+              status.includes('⏰') || status.includes('⏱️') ? 'bg-yellow-100 text-yellow-800' :
               'bg-blue-100 text-blue-800'
             }`}>
               {status}
@@ -120,17 +144,26 @@ export default function TurnstileTestPage() {
             </div>
           )}
 
-          <button
-            onClick={testSubmit}
-            disabled={!token}
-            className={`w-full py-2 px-4 rounded-md ${
-              token
-                ? 'bg-blue-500 text-white hover:bg-blue-600'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            }`}
-          >
-            Test Submit
-          </button>
+          <div className="space-y-2">
+            <button
+              onClick={testSubmit}
+              disabled={!token || isSubmitting}
+              className={`w-full py-2 px-4 rounded-md ${
+                token && !isSubmitting
+                  ? 'bg-blue-500 text-white hover:bg-blue-600'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
+            >
+              {isSubmitting ? '🔄 Submitting...' : 'Test Submit'}
+            </button>
+            
+            <button
+              onClick={resetTurnstile}
+              className="w-full py-2 px-4 rounded-md bg-gray-500 text-white hover:bg-gray-600"
+            >
+              🔄 Reset Turnstile
+            </button>
+          </div>
         </div>
 
         <div className="text-sm text-gray-600">
@@ -140,7 +173,20 @@ export default function TurnstileTestPage() {
             <li>Theme: Light</li>
             <li>Size: Normal</li>
             <li>Status: {token ? '✅ Verified' : '❌ Not verified'}</li>
+            <li>Submit Count: {submitCount}</li>
+            <li>Currently Submitting: {isSubmitting ? 'Yes' : 'No'}</li>
+            <li>Widget Key: {turnstileKey}</li>
           </ul>
+          
+          <div className="mt-4 p-3 bg-blue-50 rounded">
+            <h4 className="font-semibold text-blue-800 mb-2">How it works:</h4>
+            <ul className="text-blue-700 space-y-1 text-xs">
+              <li>• Complete verification → Get token</li>
+              <li>• Submit form → Token becomes invalid</li>
+              <li>• Widget auto-resets after 2 seconds</li>
+              <li>• Verify again for next submission</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
