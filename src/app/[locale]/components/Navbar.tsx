@@ -25,6 +25,7 @@ const Navbar = () => {
     { name: t('calendar'), href: '/calendar' },
     { name: t('posts'), href: '/posts' },
     { name: t('profile'), href: '/profile' },
+    { name: t('feedback'), href: '/feedback' },
   ] as const;
 
   return (

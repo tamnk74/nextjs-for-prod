@@ -39,6 +39,10 @@ export const routing = defineRouting({
       en: '/calendar',
       vi: '/lich',
     },
+    '/feedback': {
+      en: '/feedback',
+      vi: '/phan-hoi',
+    },
   },
 });
 

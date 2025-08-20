@@ -1,6 +1,5 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { ReactFlow } from '@xyflow/react';
 import Link from 'next/link';
 
