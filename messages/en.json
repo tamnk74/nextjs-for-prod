@@ -5,7 +5,8 @@
         "posts": "Posts",
         "profile": "Profile",
         "calendar": "Calendar",
-        "libs": "Libraries"
+        "libs": "Libraries",
+        "feedback": "Feedback"
     },
     "Common": {
         "welcome": "Welcome",

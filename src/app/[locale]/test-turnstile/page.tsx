@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import CloudflareTurnstile from '../../../components/CloudflareTurnstile';
 import '../../../utils/turnstile-debug';
 
@@ -81,7 +81,7 @@ export default function TurnstileTestPage() {
       // Token is now invalid and user needs to verify again
       setTimeout(() => {
         resetTurnstile();
-      }, 2000); // Wait 2 seconds to show result, then reset
+      }, 200); // Wait 2 seconds to show result, then reset
     }
   };
 
@@ -121,8 +121,6 @@ export default function TurnstileTestPage() {
             <div className={`p-3 rounded mb-4 ${
               status.includes('✅') ? 'bg-green-100 text-green-800' :
               status.includes('❌') ? 'bg-red-100 text-red-800' :
-              status.includes('🔄') ? 'bg-blue-100 text-blue-800' :
-              status.includes('⏰') || status.includes('⏱️') ? 'bg-yellow-100 text-yellow-800' :
               'bg-blue-100 text-blue-800'
             }`}>
               {status}

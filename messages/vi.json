@@ -5,7 +5,8 @@
         "posts": "Bài viết",
         "profile": "Hồ sơ",
         "calendar": "Lịch",
-        "libs": "Thư viện"
+        "libs": "Thư viện",
+        "feedback": "Phản hồi"
     },
     "Common": {
         "welcome": "Chào mừng",
